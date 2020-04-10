@@ -1,3 +1,6 @@
+# graphql-java-client-codegen-gradle-plugin
+根据graphql endpoint、SDL、AST.json生成客户端SDK代码 gradle 插件
+
 # GraphQLJavaGen
 [![Build Status](https://travis-ci.org/Shopify/graphql_java_gen.svg?branch=master)](https://travis-ci.org/Shopify/graphql_java_gen)
 
