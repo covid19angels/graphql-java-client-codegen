@@ -7,11 +7,11 @@ require 'erb'
 require 'set'
 
 class GraphQLJavaGen
-  attr_reader :schema, :package_name, :scalars, :imports, :script_name, :schema_name, :include_deprecated, :version
+  attr_reader :schema, :package_name, :scalars, :imports, :script_name, :schema_name, :include_deprecated
 
   def initialize(schema,
     package_name:, nest_under:, script_name: 'graphql_java_gen gem',
-    custom_scalars: [], custom_annotations: [], include_deprecated: false, version: ''
+    custom_scalars: [], custom_annotations: [], include_deprecated: false
   )
     @schema = schema
     @schema_name = nest_under
@@ -22,7 +22,6 @@ class GraphQLJavaGen
     @annotations = custom_annotations
     @imports = (@scalars.values.map(&:imports) + @annotations.map(&:imports)).flatten.sort.uniq
     @include_deprecated = include_deprecated
-    @version = version
   end
 
   def save(path)
@@ -30,7 +29,6 @@ class GraphQLJavaGen
   end
 
   def save_granular(path)
-    write_schema(path)
     write_static_methods(path)
     write_response(path, :query, schema.query_root_name)
     write_response(path, :mutation, schema.mutation_root_name)
@@ -68,10 +66,6 @@ class GraphQLJavaGen
     reformat(erb_template.result(binding))
   end
 
-  def write_schema(path)
-    File.write(path + "/Schema.java", reformat(erb_for_entity("Schema.java").result(binding)))
-  end
-
   def write_static_methods(path)
     File.write(path + "/Operations.java", reformat(erb_for_entity("Operations.java").result(binding)))
   end
@@ -85,8 +79,8 @@ class GraphQLJavaGen
   def write_entities(path)
     schema.types.reject{ |type| type.name.start_with?('__') || type.scalar? }.each do |type|
       case type.kind when 'OBJECT', 'INTERFACE', 'UNION'
-                       File.write(path + "/#{type.name}QueryDefinition.java", generate_entity("QueryDefinition.java", type))
-                       File.write(path + "/#{type.name}Query.java", generate_entity("Query.java", type))
+                       File.write(path + "/#{type.name}TueryDefinition.java", generate_entity("TueryDefinition.java", type))
+                       File.write(path + "/#{type.name}Tuery.java", generate_entity("Tuery.java", type))
                        File.write(path + "/#{type.name}.java", generate_entity("Interface.java", type))
 
                        class_name = type.object? ? type.name : "Unknown#{type.name}"
@@ -191,7 +185,7 @@ class GraphQLJavaGen
       if ['Int', 'Float', 'Boolean'].include?(type.name)
         "_queryBuilder.append(#{expr});"
       else
-        "Query.appendQuotedString(_queryBuilder, #{expr}.toString());"
+        "Tuery.appendQuotedString(_queryBuilder, #{expr}.toString());"
       end
     when 'ENUM'
       "_queryBuilder.append(#{expr}.toString());"
@@ -273,7 +267,7 @@ class GraphQLJavaGen
       defs << "#{field.classify_name}ArgumentsDefinition argsDef"
     end
     if field.subfields?
-      defs << "#{field.type.unwrap.name}QueryDefinition queryDef"
+      defs << "#{field.type.unwrap.name}TueryDefinition queryDef"
     end
     defs.join(', ')
   end
@@ -287,7 +281,7 @@ class GraphQLJavaGen
       defs << "#{field.classify_name}ArgumentsDefinition argsDef"
     end
     if field.subfields?
-      defs << "#{field.type.unwrap.classify_name}QueryDefinition queryDef"
+      defs << "#{field.type.unwrap.classify_name}TueryDefinition queryDef"
     end
     defs.join(', ')
   end
@@ -352,7 +346,7 @@ class GraphQLJavaGen
         doc << "\n*"
         doc << "\n*"
       else
-        doc << '*'        
+        doc << '*'
       end
       doc << ' @deprecated '
       doc << element.deprecation_reason

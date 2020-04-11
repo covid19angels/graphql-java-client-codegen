@@ -1,4 +1,4 @@
-// Generated from <%= script_name %>
+// Generated from <%= script_name %>  with template Tuery.java.erb
 
 package <%= package_name %>;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -25,8 +26,8 @@ import java.util.Map;
 
 <% fields = type.fields(include_deprecated: include_deprecated) || [] %>
 <%= java_doc(type) %>
-public class <%= type.name %>Query extends Query<<%= type.name %>Query> {
-    <%= type.name %>Query(StringBuilder _queryBuilder) {
+public class <%= type.name %>Tuery extends Tuery<<%= type.name %>Tuery> {
+    <%= type.name %>Tuery(StringBuilder _queryBuilder) {
         super(_queryBuilder);
         <% if type.object? && type.implement?("Node") %>
             startField("id");
@@ -61,14 +62,14 @@ public class <%= type.name %>Query extends Query<<%= type.name %>Query> {
             }
 
             <%= java_doc(field) %>
-            public <%= type.name %>Query <%= escape_reserved_word(field.camelize_name) %>(<%= java_arg_defs(field, skip_optional: true) %>) {
+            public <%= type.name %>Tuery <%= escape_reserved_word(field.camelize_name) %>(<%= java_arg_defs(field, skip_optional: true) %>) {
                 return <%= escape_reserved_word(field.camelize_name) %>(<%= java_arg_expresions_with_empty_optional_args(field) %>);
             }
         <% end %>
 
         <%= java_doc(field) %>
         <%= field.deprecated? ? "@Deprecated\n" : '' -%>
-        public <%= type.name %>Query <%= escape_reserved_word(field.camelize_name) %>(<%= java_arg_defs(field) %>) {
+        public <%= type.name %>Tuery <%= escape_reserved_word(field.camelize_name) %>(<%= java_arg_defs(field) %>) {
             startField("<%= field.name %>");
             <% unless field.args.empty? %>
                 <% if field.required_args.empty? %>
@@ -88,7 +89,7 @@ public class <%= type.name %>Query extends Query<<%= type.name %>Query> {
             <% end %>
             <% if field.subfields? %>
                 _queryBuilder.append('{');
-                queryDef.define(new <%= field.type.unwrap.name %>Query(_queryBuilder));
+                queryDef.define(new <%= field.type.unwrap.name %>Tuery(_queryBuilder));
                 _queryBuilder.append('}');
             <% end %>
             return this;
@@ -96,9 +97,9 @@ public class <%= type.name %>Query extends Query<<%= type.name %>Query> {
     <% end %>
     <% unless type.object? %>
         <% type.possible_types.each do |possible_type| %>
-            public <%= type.name %>Query on<%= possible_type.name %>(<%= possible_type.name %>QueryDefinition queryDef) {
+            public <%= type.name %>Tuery on<%= possible_type.name %>(<%= possible_type.name %>TueryDefinition queryDef) {
                 startInlineFragment("<%= possible_type.name %>");
-                queryDef.define(new <%= possible_type.name %>Query(_queryBuilder));
+                queryDef.define(new <%= possible_type.name %>Tuery(_queryBuilder));
                 _queryBuilder.append('}');
                 return this;
             }

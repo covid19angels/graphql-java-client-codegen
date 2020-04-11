@@ -6,17 +6,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.shopify.graphql.support.AbstractResponse;
-import com.shopify.graphql.support.Arguments;
-import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
-import com.shopify.graphql.support.SchemaViolationError;
-import com.shopify.graphql.support.TopLevelResponse;
-import com.shopify.graphql.support.Input;
-
-import com.shopify.graphql.support.ID;
-
-import com.shopify.graphql.support.Nullable;
 
 import java.time.LocalDateTime;
 
@@ -28,9 +17,9 @@ import java.util.Map;
 public class Generated {
     public static final String API_VERSION = "2020-01";
 
-    public static QueryRootQuery query(QueryRootQueryDefinition queryDef) {
+    public static QueryRootQueryBase query(QueryRootQueryDefinition queryDef) {
         StringBuilder queryString = new StringBuilder("{");
-        QueryRootQuery query = new QueryRootQuery(queryString);
+        QueryRootQueryBase query = new QueryRootQueryBase(queryString);
         queryDef.define(query);
         queryString.append('}');
         return query;
@@ -68,9 +57,9 @@ public class Generated {
         }
     }
 
-    public static MutationQuery mutation(MutationQueryDefinition queryDef) {
+    public static MutationQueryBase mutation(MutationQueryDefinition queryDef) {
         StringBuilder queryString = new StringBuilder("mutation{");
-        MutationQuery query = new MutationQuery(queryString);
+        MutationQueryBase query = new MutationQueryBase(queryString);
         queryDef.define(query);
         queryString.append('}');
         return query;
@@ -109,38 +98,38 @@ public class Generated {
     }
 
     public interface EntryQueryDefinition {
-        void define(EntryQuery _queryBuilder);
+        void define(EntryQueryBase _queryBuilder);
     }
 
-    public static class EntryQuery extends Query<EntryQuery> {
-        EntryQuery(StringBuilder _queryBuilder) {
+    public static class EntryQueryBase extends QueryBase<EntryQueryBase> {
+        EntryQueryBase(StringBuilder _queryBuilder) {
             super(_queryBuilder);
 
             startField("__typename");
         }
 
-        public EntryQuery key() {
+        public EntryQueryBase key() {
             startField("key");
 
             return this;
         }
 
-        public EntryQuery ttl() {
+        public EntryQueryBase ttl() {
             startField("ttl");
 
             return this;
         }
 
-        public EntryQuery onIntegerEntry(IntegerEntryQueryDefinition queryDef) {
+        public EntryQueryBase onIntegerEntry(IntegerEntryQueryDefinition queryDef) {
             startInlineFragment("IntegerEntry");
-            queryDef.define(new IntegerEntryQuery(_queryBuilder));
+            queryDef.define(new IntegerEntryQueryBase(_queryBuilder));
             _queryBuilder.append('}');
             return this;
         }
 
-        public EntryQuery onStringEntry(StringEntryQueryDefinition queryDef) {
+        public EntryQueryBase onStringEntry(StringEntryQueryDefinition queryDef) {
             startInlineFragment("StringEntry");
-            queryDef.define(new StringEntryQuery(_queryBuilder));
+            queryDef.define(new StringEntryQueryBase(_queryBuilder));
             _queryBuilder.append('}');
             return this;
         }
@@ -221,7 +210,6 @@ public class Generated {
             return this;
         }
 
-        @Nullable
         public LocalDateTime getTtl() {
             return (LocalDateTime) get("ttl");
         }
@@ -243,26 +231,26 @@ public class Generated {
     }
 
     public interface EntryUnionQueryDefinition {
-        void define(EntryUnionQuery _queryBuilder);
+        void define(EntryUnionQueryBase _queryBuilder);
     }
 
-    public static class EntryUnionQuery extends Query<EntryUnionQuery> {
-        EntryUnionQuery(StringBuilder _queryBuilder) {
+    public static class EntryUnionQueryBase extends QueryBase<EntryUnionQueryBase> {
+        EntryUnionQueryBase(StringBuilder _queryBuilder) {
             super(_queryBuilder);
 
             startField("__typename");
         }
 
-        public EntryUnionQuery onIntegerEntry(IntegerEntryQueryDefinition queryDef) {
+        public EntryUnionQueryBase onIntegerEntry(IntegerEntryQueryDefinition queryDef) {
             startInlineFragment("IntegerEntry");
-            queryDef.define(new IntegerEntryQuery(_queryBuilder));
+            queryDef.define(new IntegerEntryQueryBase(_queryBuilder));
             _queryBuilder.append('}');
             return this;
         }
 
-        public EntryUnionQuery onStringEntry(StringEntryQueryDefinition queryDef) {
+        public EntryUnionQueryBase onStringEntry(StringEntryQueryDefinition queryDef) {
             startInlineFragment("StringEntry");
-            queryDef.define(new StringEntryQuery(_queryBuilder));
+            queryDef.define(new StringEntryQueryBase(_queryBuilder));
             _queryBuilder.append('}');
             return this;
         }
@@ -321,27 +309,27 @@ public class Generated {
     }
 
     public interface IntegerEntryQueryDefinition {
-        void define(IntegerEntryQuery _queryBuilder);
+        void define(IntegerEntryQueryBase _queryBuilder);
     }
 
-    public static class IntegerEntryQuery extends Query<IntegerEntryQuery> {
-        IntegerEntryQuery(StringBuilder _queryBuilder) {
+    public static class IntegerEntryQueryBase extends QueryBase<IntegerEntryQueryBase> {
+        IntegerEntryQueryBase(StringBuilder _queryBuilder) {
             super(_queryBuilder);
         }
 
-        public IntegerEntryQuery key() {
+        public IntegerEntryQueryBase key() {
             startField("key");
 
             return this;
         }
 
-        public IntegerEntryQuery ttl() {
+        public IntegerEntryQueryBase ttl() {
             startField("ttl");
 
             return this;
         }
 
-        public IntegerEntryQuery value() {
+        public IntegerEntryQueryBase value() {
             startField("value");
 
             return this;
@@ -404,7 +392,6 @@ public class Generated {
             return this;
         }
 
-        @Nullable
         public LocalDateTime getTtl() {
             return (LocalDateTime) get("ttl");
         }
@@ -483,15 +470,15 @@ public class Generated {
     }
 
     public interface MutationQueryDefinition {
-        void define(MutationQuery _queryBuilder);
+        void define(MutationQueryBase _queryBuilder);
     }
 
-    public static class MutationQuery extends Query<MutationQuery> {
-        MutationQuery(StringBuilder _queryBuilder) {
+    public static class MutationQueryBase extends QueryBase<MutationQueryBase> {
+        MutationQueryBase(StringBuilder _queryBuilder) {
             super(_queryBuilder);
         }
 
-        public MutationQuery setInteger(SetIntegerInput input) {
+        public MutationQueryBase setInteger(SetIntegerInput input) {
             startField("set_integer");
 
             _queryBuilder.append("(input:");
@@ -502,14 +489,14 @@ public class Generated {
             return this;
         }
 
-        public MutationQuery setString(String key, String value) {
+        public MutationQueryBase setString(String key, String value) {
             startField("set_string");
 
             _queryBuilder.append("(key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            QueryBase.appendQuotedString(_queryBuilder, key.toString());
 
             _queryBuilder.append(",value:");
-            Query.appendQuotedString(_queryBuilder, value.toString());
+            QueryBase.appendQuotedString(_queryBuilder, value.toString());
 
             _queryBuilder.append(')');
 
@@ -524,7 +511,7 @@ public class Generated {
             public SetStringWithDefaultArguments value(String value) {
                 if (value != null) {
                     startArgument("value");
-                    Query.appendQuotedString(_queryBuilder, value.toString());
+                    QueryBase.appendQuotedString(_queryBuilder, value.toString());
                 }
                 return this;
             }
@@ -534,15 +521,15 @@ public class Generated {
             void define(SetStringWithDefaultArguments args);
         }
 
-        public MutationQuery setStringWithDefault(String key) {
+        public MutationQueryBase setStringWithDefault(String key) {
             return setStringWithDefault(key, args -> {});
         }
 
-        public MutationQuery setStringWithDefault(String key, SetStringWithDefaultArgumentsDefinition argsDef) {
+        public MutationQueryBase setStringWithDefault(String key, SetStringWithDefaultArgumentsDefinition argsDef) {
             startField("set_string_with_default");
 
             _queryBuilder.append("(key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            QueryBase.appendQuotedString(_queryBuilder, key.toString());
 
             argsDef.define(new SetStringWithDefaultArguments(_queryBuilder));
 
@@ -639,11 +626,11 @@ public class Generated {
     }
 
     public interface QueryRootQueryDefinition {
-        void define(QueryRootQuery _queryBuilder);
+        void define(QueryRootQueryBase _queryBuilder);
     }
 
-    public static class QueryRootQuery extends Query<QueryRootQuery> {
-        QueryRootQuery(StringBuilder _queryBuilder) {
+    public static class QueryRootQueryBase extends QueryBase<QueryRootQueryBase> {
+        QueryRootQueryBase(StringBuilder _queryBuilder) {
             super(_queryBuilder);
         }
 
@@ -655,7 +642,7 @@ public class Generated {
             public EntriesArguments after(String value) {
                 if (value != null) {
                     startArgument("after");
-                    Query.appendQuotedString(_queryBuilder, value.toString());
+                    QueryBase.appendQuotedString(_queryBuilder, value.toString());
                 }
                 return this;
             }
@@ -665,11 +652,11 @@ public class Generated {
             void define(EntriesArguments args);
         }
 
-        public QueryRootQuery entries(int first, EntryQueryDefinition queryDef) {
+        public QueryRootQueryBase entries(int first, EntryQueryDefinition queryDef) {
             return entries(first, args -> {}, queryDef);
         }
 
-        public QueryRootQuery entries(int first, EntriesArgumentsDefinition argsDef, EntryQueryDefinition queryDef) {
+        public QueryRootQueryBase entries(int first, EntriesArgumentsDefinition argsDef, EntryQueryDefinition queryDef) {
             startField("entries");
 
             _queryBuilder.append("(first:");
@@ -680,7 +667,7 @@ public class Generated {
             _queryBuilder.append(')');
 
             _queryBuilder.append('{');
-            queryDef.define(new EntryQuery(_queryBuilder));
+            queryDef.define(new EntryQueryBase(_queryBuilder));
             _queryBuilder.append('}');
 
             return this;
@@ -689,16 +676,16 @@ public class Generated {
         /**
         * Get an entry of any type with the given key
         */
-        public QueryRootQuery entry(String key, EntryQueryDefinition queryDef) {
+        public QueryRootQueryBase entry(String key, EntryQueryDefinition queryDef) {
             startField("entry");
 
             _queryBuilder.append("(key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            QueryBase.appendQuotedString(_queryBuilder, key.toString());
 
             _queryBuilder.append(')');
 
             _queryBuilder.append('{');
-            queryDef.define(new EntryQuery(_queryBuilder));
+            queryDef.define(new EntryQueryBase(_queryBuilder));
             _queryBuilder.append('}');
 
             return this;
@@ -707,16 +694,16 @@ public class Generated {
         /**
         * Get an entry of any type with the given key as a union
         */
-        public QueryRootQuery entryUnion(String key, EntryUnionQueryDefinition queryDef) {
+        public QueryRootQueryBase entryUnion(String key, EntryUnionQueryDefinition queryDef) {
             startField("entry_union");
 
             _queryBuilder.append("(key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            QueryBase.appendQuotedString(_queryBuilder, key.toString());
 
             _queryBuilder.append(')');
 
             _queryBuilder.append('{');
-            queryDef.define(new EntryUnionQuery(_queryBuilder));
+            queryDef.define(new EntryUnionQueryBase(_queryBuilder));
             _queryBuilder.append('}');
 
             return this;
@@ -725,11 +712,11 @@ public class Generated {
         /**
         * Get a integer value with the given key
         */
-        public QueryRootQuery integer(String key) {
+        public QueryRootQueryBase integer(String key) {
             startField("integer");
 
             _queryBuilder.append("(key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            QueryBase.appendQuotedString(_queryBuilder, key.toString());
 
             _queryBuilder.append(')');
 
@@ -744,7 +731,7 @@ public class Generated {
             public KeysArguments after(String value) {
                 if (value != null) {
                     startArgument("after");
-                    Query.appendQuotedString(_queryBuilder, value.toString());
+                    QueryBase.appendQuotedString(_queryBuilder, value.toString());
                 }
                 return this;
             }
@@ -762,11 +749,11 @@ public class Generated {
             void define(KeysArguments args);
         }
 
-        public QueryRootQuery keys(int first) {
+        public QueryRootQueryBase keys(int first) {
             return keys(first, args -> {});
         }
 
-        public QueryRootQuery keys(int first, KeysArgumentsDefinition argsDef) {
+        public QueryRootQueryBase keys(int first, KeysArgumentsDefinition argsDef) {
             startField("keys");
 
             _queryBuilder.append("(first:");
@@ -782,40 +769,40 @@ public class Generated {
         /**
         * Get a string value with the given key
         */
-        public QueryRootQuery string(String key) {
+        public QueryRootQueryBase string(String key) {
             startField("string");
 
             _queryBuilder.append("(key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            QueryBase.appendQuotedString(_queryBuilder, key.toString());
 
             _queryBuilder.append(')');
 
             return this;
         }
 
-        public QueryRootQuery ttl(String key) {
+        public QueryRootQueryBase ttl(String key) {
             startField("ttl");
 
             _queryBuilder.append("(key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            QueryBase.appendQuotedString(_queryBuilder, key.toString());
 
             _queryBuilder.append(')');
 
             return this;
         }
 
-        public QueryRootQuery type(String key) {
+        public QueryRootQueryBase type(String key) {
             startField("type");
 
             _queryBuilder.append("(key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            QueryBase.appendQuotedString(_queryBuilder, key.toString());
 
             _queryBuilder.append(')');
 
             return this;
         }
 
-        public QueryRootQuery version() {
+        public QueryRootQueryBase version() {
             startField("version");
 
             return this;
@@ -961,7 +948,6 @@ public class Generated {
         /**
         * Get an entry of any type with the given key
         */
-        @Nullable
         public Entry getEntry() {
             return (Entry) get("entry");
         }
@@ -974,7 +960,6 @@ public class Generated {
         /**
         * Get an entry of any type with the given key as a union
         */
-        @Nullable
         public EntryUnion getEntryUnion() {
             return (EntryUnion) get("entry_union");
         }
@@ -987,7 +972,6 @@ public class Generated {
         /**
         * Get a integer value with the given key
         */
-        @Nullable
         public Integer getInteger() {
             return (Integer) get("integer");
         }
@@ -1009,7 +993,6 @@ public class Generated {
         /**
         * Get a string value with the given key
         */
-        @Nullable
         public String getString() {
             return (String) get("string");
         }
@@ -1019,7 +1002,6 @@ public class Generated {
             return this;
         }
 
-        @Nullable
         public LocalDateTime getTtl() {
             return (LocalDateTime) get("ttl");
         }
@@ -1029,7 +1011,6 @@ public class Generated {
             return this;
         }
 
-        @Nullable
         public KeyType getType() {
             return (KeyType) get("type");
         }
@@ -1039,7 +1020,6 @@ public class Generated {
             return this;
         }
 
-        @Nullable
         public String getVersion() {
             return (String) get("version");
         }
@@ -1109,7 +1089,6 @@ public class Generated {
             return this;
         }
 
-        @Nullable
         public LocalDateTime getTtl() {
             return ttl.getValue();
         }
@@ -1118,7 +1097,7 @@ public class Generated {
             return ttl;
         }
 
-        public SetIntegerInput setTtl(@Nullable LocalDateTime ttl) {
+        public SetIntegerInput setTtl(LocalDateTime ttl) {
             this.ttl = Input.optional(ttl);
             return this;
         }
@@ -1131,7 +1110,6 @@ public class Generated {
             return this;
         }
 
-        @Nullable
         public Boolean getNegate() {
             return negate.getValue();
         }
@@ -1140,7 +1118,7 @@ public class Generated {
             return negate;
         }
 
-        public SetIntegerInput setNegate(@Nullable Boolean negate) {
+        public SetIntegerInput setNegate(Boolean negate) {
             this.negate = Input.optional(negate);
             return this;
         }
@@ -1153,7 +1131,6 @@ public class Generated {
             return this;
         }
 
-        @Nullable
         public String getApiClient() {
             return apiClient.getValue();
         }
@@ -1162,7 +1139,7 @@ public class Generated {
             return apiClient;
         }
 
-        public SetIntegerInput setApiClient(@Nullable String apiClient) {
+        public SetIntegerInput setApiClient(String apiClient) {
             this.apiClient = Input.optional(apiClient);
             return this;
         }
@@ -1182,7 +1159,7 @@ public class Generated {
             _queryBuilder.append(separator);
             separator = ",";
             _queryBuilder.append("key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            QueryBase.appendQuotedString(_queryBuilder, key.toString());
 
             _queryBuilder.append(separator);
             separator = ",";
@@ -1194,7 +1171,7 @@ public class Generated {
                 separator = ",";
                 _queryBuilder.append("ttl:");
                 if (ttl.getValue() != null) {
-                    Query.appendQuotedString(_queryBuilder, ttl.getValue().toString());
+                    QueryBase.appendQuotedString(_queryBuilder, ttl.getValue().toString());
                 } else {
                     _queryBuilder.append("null");
                 }
@@ -1216,7 +1193,7 @@ public class Generated {
                 separator = ",";
                 _queryBuilder.append("api_client:");
                 if (apiClient.getValue() != null) {
-                    Query.appendQuotedString(_queryBuilder, apiClient.getValue().toString());
+                    QueryBase.appendQuotedString(_queryBuilder, apiClient.getValue().toString());
                 } else {
                     _queryBuilder.append("null");
                 }
@@ -1227,27 +1204,27 @@ public class Generated {
     }
 
     public interface StringEntryQueryDefinition {
-        void define(StringEntryQuery _queryBuilder);
+        void define(StringEntryQueryBase _queryBuilder);
     }
 
-    public static class StringEntryQuery extends Query<StringEntryQuery> {
-        StringEntryQuery(StringBuilder _queryBuilder) {
+    public static class StringEntryQueryBase extends QueryBase<StringEntryQueryBase> {
+        StringEntryQueryBase(StringBuilder _queryBuilder) {
             super(_queryBuilder);
         }
 
-        public StringEntryQuery key() {
+        public StringEntryQueryBase key() {
             startField("key");
 
             return this;
         }
 
-        public StringEntryQuery ttl() {
+        public StringEntryQueryBase ttl() {
             startField("ttl");
 
             return this;
         }
 
-        public StringEntryQuery value() {
+        public StringEntryQueryBase value() {
             startField("value");
 
             return this;
@@ -1310,7 +1287,6 @@ public class Generated {
             return this;
         }
 
-        @Nullable
         public LocalDateTime getTtl() {
             return (LocalDateTime) get("ttl");
         }

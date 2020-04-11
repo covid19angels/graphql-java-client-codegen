@@ -6,27 +6,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.shopify.graphql.support.AbstractResponse;
-import com.shopify.graphql.support.Arguments;
-import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
-import com.shopify.graphql.support.SchemaViolationError;
-import com.shopify.graphql.support.TopLevelResponse;
-import com.shopify.graphql.support.Input;
 
-import com.shopify.graphql.support.ID;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class GeneratedMinimal {
     public static final String API_VERSION = "2020-01";
 
-    public static QueryRootQuery query(QueryRootQueryDefinition queryDef) {
+    public static QueryRootQueryBase query(QueryRootQueryDefinition queryDef) {
         StringBuilder queryString = new StringBuilder("{");
-        QueryRootQuery query = new QueryRootQuery(queryString);
+        QueryRootQueryBase query = new QueryRootQueryBase(queryString);
         queryDef.define(query);
         queryString.append('}');
         return query;
@@ -65,15 +54,15 @@ public class GeneratedMinimal {
     }
 
     public interface QueryRootQueryDefinition {
-        void define(QueryRootQuery _queryBuilder);
+        void define(QueryRootQueryBase _queryBuilder);
     }
 
-    public static class QueryRootQuery extends Query<QueryRootQuery> {
-        QueryRootQuery(StringBuilder _queryBuilder) {
+    public static class QueryRootQueryBase extends QueryBase<QueryRootQueryBase> {
+        QueryRootQueryBase(StringBuilder _queryBuilder) {
             super(_queryBuilder);
         }
 
-        public QueryRootQuery version() {
+        public QueryRootQueryBase version() {
             startField("version");
 
             return this;
