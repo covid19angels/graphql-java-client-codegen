@@ -8,3 +8,24 @@ buildscript {
 }
 
 apply from: 'graphql.java.gen.build.gradle'
+apply plugin: 'maven'
+
+dependencies {
+    compile group: 'joda-time', name: 'joda-time', version: '2.10.5'
+    compile "com.squareup.okhttp3:logging-interceptor:3.7.0"
+    compile "com.google.code.gson:gson:2.7"
+    compile "io.reactivex.rxjava2:rxjava:2.0.6"
+    compile group: 'org.json', name: 'json', version: '20190722'
+}
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository url: 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+            pom.version = "latest"
+            pom.artifactId = "graphql-supper"
+            pom.groupId = "com.bdlbsc"
+        }
+    }
+}
