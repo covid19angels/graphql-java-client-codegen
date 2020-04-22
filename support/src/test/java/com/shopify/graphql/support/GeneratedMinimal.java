@@ -9,7 +9,7 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -68,7 +68,7 @@ public class GeneratedMinimal {
         void define(QueryRootQuery _queryBuilder);
     }
 
-    public static class QueryRootQuery extends Query<QueryRootQuery> {
+    public static class QueryRootQuery extends Tuery<QueryRootQuery> {
         QueryRootQuery(StringBuilder _queryBuilder) {
             super(_queryBuilder);
         }

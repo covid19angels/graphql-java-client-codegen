@@ -3,7 +3,7 @@ package com.shopify.graphql.support;
 /**
  * Created by eapache on 2015-11-17.
  */
-public abstract class Query<T extends Query> {
+public abstract class Tuery<T extends Tuery> {
     public static final String ALIAS_SUFFIX_SEPARATOR = "__";
     private static final String BAD_ALIAS_SEPARATOR = "-";
     private static final String ALIAS_DELIMITER = ":";
@@ -11,7 +11,7 @@ public abstract class Query<T extends Query> {
     private boolean firstSelection = true;
     private String aliasSuffix = null;
 
-    protected Query(StringBuilder queryBuilder) {
+    protected Tuery(StringBuilder queryBuilder) {
         this._queryBuilder = queryBuilder;
     }
 
@@ -80,10 +80,10 @@ public abstract class Query<T extends Query> {
         if (aliasSuffix == null || aliasSuffix.isEmpty()) {
             throw new IllegalArgumentException("Can't specify an empty alias");
         }
-        if (aliasSuffix.contains(Query.ALIAS_SUFFIX_SEPARATOR)) {
+        if (aliasSuffix.contains(Tuery.ALIAS_SUFFIX_SEPARATOR)) {
             throw new IllegalArgumentException("Alias must not contain __");
         }
-        if (aliasSuffix.contains(Query.BAD_ALIAS_SEPARATOR)) {
+        if (aliasSuffix.contains(Tuery.BAD_ALIAS_SEPARATOR)) {
             throw new IllegalArgumentException("Alias must not contain -");
         }
         this.aliasSuffix = aliasSuffix;

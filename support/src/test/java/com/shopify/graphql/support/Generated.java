@@ -9,7 +9,7 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -112,7 +112,7 @@ public class Generated {
         void define(EntryQuery _queryBuilder);
     }
 
-    public static class EntryQuery extends Query<EntryQuery> {
+    public static class EntryQuery extends Tuery<EntryQuery> {
         EntryQuery(StringBuilder _queryBuilder) {
             super(_queryBuilder);
 
@@ -246,7 +246,7 @@ public class Generated {
         void define(EntryUnionQuery _queryBuilder);
     }
 
-    public static class EntryUnionQuery extends Query<EntryUnionQuery> {
+    public static class EntryUnionQuery extends Tuery<EntryUnionQuery> {
         EntryUnionQuery(StringBuilder _queryBuilder) {
             super(_queryBuilder);
 
@@ -324,7 +324,7 @@ public class Generated {
         void define(IntegerEntryQuery _queryBuilder);
     }
 
-    public static class IntegerEntryQuery extends Query<IntegerEntryQuery> {
+    public static class IntegerEntryQuery extends Tuery<IntegerEntryQuery> {
         IntegerEntryQuery(StringBuilder _queryBuilder) {
             super(_queryBuilder);
         }
@@ -486,7 +486,7 @@ public class Generated {
         void define(MutationQuery _queryBuilder);
     }
 
-    public static class MutationQuery extends Query<MutationQuery> {
+    public static class MutationQuery extends Tuery<MutationQuery> {
         MutationQuery(StringBuilder _queryBuilder) {
             super(_queryBuilder);
         }
@@ -506,10 +506,10 @@ public class Generated {
             startField("set_string");
 
             _queryBuilder.append("(key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            Tuery.appendQuotedString(_queryBuilder, key.toString());
 
             _queryBuilder.append(",value:");
-            Query.appendQuotedString(_queryBuilder, value.toString());
+            Tuery.appendQuotedString(_queryBuilder, value.toString());
 
             _queryBuilder.append(')');
 
@@ -524,7 +524,7 @@ public class Generated {
             public SetStringWithDefaultArguments value(String value) {
                 if (value != null) {
                     startArgument("value");
-                    Query.appendQuotedString(_queryBuilder, value.toString());
+                    Tuery.appendQuotedString(_queryBuilder, value.toString());
                 }
                 return this;
             }
@@ -542,7 +542,7 @@ public class Generated {
             startField("set_string_with_default");
 
             _queryBuilder.append("(key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            Tuery.appendQuotedString(_queryBuilder, key.toString());
 
             argsDef.define(new SetStringWithDefaultArguments(_queryBuilder));
 
@@ -642,7 +642,7 @@ public class Generated {
         void define(QueryRootQuery _queryBuilder);
     }
 
-    public static class QueryRootQuery extends Query<QueryRootQuery> {
+    public static class QueryRootQuery extends Tuery<QueryRootQuery> {
         QueryRootQuery(StringBuilder _queryBuilder) {
             super(_queryBuilder);
         }
@@ -655,7 +655,7 @@ public class Generated {
             public EntriesArguments after(String value) {
                 if (value != null) {
                     startArgument("after");
-                    Query.appendQuotedString(_queryBuilder, value.toString());
+                    Tuery.appendQuotedString(_queryBuilder, value.toString());
                 }
                 return this;
             }
@@ -693,7 +693,7 @@ public class Generated {
             startField("entry");
 
             _queryBuilder.append("(key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            Tuery.appendQuotedString(_queryBuilder, key.toString());
 
             _queryBuilder.append(')');
 
@@ -711,7 +711,7 @@ public class Generated {
             startField("entry_union");
 
             _queryBuilder.append("(key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            Tuery.appendQuotedString(_queryBuilder, key.toString());
 
             _queryBuilder.append(')');
 
@@ -729,7 +729,7 @@ public class Generated {
             startField("integer");
 
             _queryBuilder.append("(key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            Tuery.appendQuotedString(_queryBuilder, key.toString());
 
             _queryBuilder.append(')');
 
@@ -744,7 +744,7 @@ public class Generated {
             public KeysArguments after(String value) {
                 if (value != null) {
                     startArgument("after");
-                    Query.appendQuotedString(_queryBuilder, value.toString());
+                    Tuery.appendQuotedString(_queryBuilder, value.toString());
                 }
                 return this;
             }
@@ -786,7 +786,7 @@ public class Generated {
             startField("string");
 
             _queryBuilder.append("(key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            Tuery.appendQuotedString(_queryBuilder, key.toString());
 
             _queryBuilder.append(')');
 
@@ -797,7 +797,7 @@ public class Generated {
             startField("ttl");
 
             _queryBuilder.append("(key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            Tuery.appendQuotedString(_queryBuilder, key.toString());
 
             _queryBuilder.append(')');
 
@@ -808,7 +808,7 @@ public class Generated {
             startField("type");
 
             _queryBuilder.append("(key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            Tuery.appendQuotedString(_queryBuilder, key.toString());
 
             _queryBuilder.append(')');
 
@@ -1182,7 +1182,7 @@ public class Generated {
             _queryBuilder.append(separator);
             separator = ",";
             _queryBuilder.append("key:");
-            Query.appendQuotedString(_queryBuilder, key.toString());
+            Tuery.appendQuotedString(_queryBuilder, key.toString());
 
             _queryBuilder.append(separator);
             separator = ",";
@@ -1194,7 +1194,7 @@ public class Generated {
                 separator = ",";
                 _queryBuilder.append("ttl:");
                 if (ttl.getValue() != null) {
-                    Query.appendQuotedString(_queryBuilder, ttl.getValue().toString());
+                    Tuery.appendQuotedString(_queryBuilder, ttl.getValue().toString());
                 } else {
                     _queryBuilder.append("null");
                 }
@@ -1216,7 +1216,7 @@ public class Generated {
                 separator = ",";
                 _queryBuilder.append("api_client:");
                 if (apiClient.getValue() != null) {
-                    Query.appendQuotedString(_queryBuilder, apiClient.getValue().toString());
+                    Tuery.appendQuotedString(_queryBuilder, apiClient.getValue().toString());
                 } else {
                     _queryBuilder.append("null");
                 }
@@ -1230,7 +1230,7 @@ public class Generated {
         void define(StringEntryQuery _queryBuilder);
     }
 
-    public static class StringEntryQuery extends Query<StringEntryQuery> {
+    public static class StringEntryQuery extends Tuery<StringEntryQuery> {
         StringEntryQuery(StringBuilder _queryBuilder) {
             super(_queryBuilder);
         }
