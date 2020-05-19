@@ -93,7 +93,6 @@ import java.util.Map;
                       return (<%= java_output_type(field.type) %>) get("<%= field.name %>");
                     }
 
-                    <% next if field.name == "id" && type.object? && type.implement?("Node") %>
                     public <%= class_name %> set<%= field.classify_name %>(<%= java_output_type(field.type) %> arg) {
                       optimisticData.put(getKey("<%= field.name %>"), arg);
                       return this;
