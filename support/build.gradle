@@ -15,8 +15,20 @@ compileJava {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+compileTestJava {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
 
 repositories {
+    maven {
+        url "https://repo.rdc.aliyun.com/repository/73792-snapshot-z4fvGZ/"
+        credentials {
+            username System.getenv("ALIYUN_MAVEN_USERNAME")
+            password System.getenv("ALIYUN_MAVEN_PASSWORD")
+        }
+    }
     mavenLocal()
     mavenCentral()
     jcenter()
