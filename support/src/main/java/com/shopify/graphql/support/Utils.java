@@ -24,18 +24,39 @@
 
 package com.shopify.graphql.support;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
+
 
 public final class Utils {
-  private static final String DATE_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ssZ";
-  private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormat.forPattern(DATE_TIME_PATTERN);
+//  private static final String DATE_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ssZ";
+//  private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
 
-  public static DateTime parseDateTime(String dateTime) {
-    return DateTime.parse(dateTime, DATE_TIME_FORMATTER);
-  }
+    private static final DateTimeFormatter RFC3339_DATE_TIME_FORMATTER;
 
-  private Utils() {
-  }
+    public static OffsetDateTime parseRfc3339DateTime(String rfc3339Dt) {
+
+        return OffsetDateTime.from(RFC3339_DATE_TIME_FORMATTER.parse(rfc3339Dt));
+    }
+
+    static {
+        final DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder()
+                .appendPattern("yyyy-MM-dd")
+                .appendLiteral('T')
+                .appendPattern("HH:mm:ss")
+                .optionalStart()
+                .appendFraction(ChronoField.NANO_OF_SECOND, 0, 9, true).parseDefaulting(ChronoField.NANO_OF_SECOND, 0)
+                .optionalEnd()
+                .appendOffset("+HH:mm", "Z");
+        RFC3339_DATE_TIME_FORMATTER = builder.toFormatter();
+    }
+
+    public static DateTimeFormatter getRfc3339DateTimeFormatter() {
+        return RFC3339_DATE_TIME_FORMATTER;
+    }
+
+    private Utils() {
+    }
 }

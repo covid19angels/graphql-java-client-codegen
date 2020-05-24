@@ -1,8 +1,10 @@
 package com.shopify.graphql.support;
 
-import org.junit.Test;
 
-import static junit.framework.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TueryTest {
     @Test
@@ -12,18 +14,21 @@ public class TueryTest {
         assertEquals("\"\\u0000 \\r \\n \\\\ \\\" c ꝏ\"", result.toString());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testInvalidAliasWithUnderscore() {
-        new Tuery<Tuery>(null) {}.withAlias("invalid__alias");
+        assertThrows(IllegalArgumentException.class, () -> new Tuery<Tuery>(null) {
+        }.withAlias("invalid__alias"));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testInvalidAliasWithDashes() {
-        new Tuery<Tuery>(null) {}.withAlias("invalid-alias");
+        assertThrows(IllegalArgumentException.class, () -> new Tuery<Tuery>(null) {
+        }.withAlias("invalid-alias"));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testBlankAlias() {
-        new Tuery<Tuery>(null) {}.withAlias("");
+        assertThrows(IllegalArgumentException.class, () -> new Tuery<Tuery>(null) {
+        }.withAlias(""));
     }
 }

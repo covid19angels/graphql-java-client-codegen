@@ -24,12 +24,17 @@ repositories {
 }
 
 dependencies {
-    compile group: 'joda-time', name: 'joda-time', version: '2.10.5'
     compile "com.squareup.okhttp3:logging-interceptor:3.7.0"
     compile "com.google.code.gson:gson:2.7"
     compile "io.reactivex.rxjava2:rxjava:2.0.6"
     compile group: 'org.json', name: 'json', version: '20190722'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    // enable JUnit Platform (a.k.a. JUnit 5) support
+    useJUnitPlatform()
 }
 
 
@@ -93,10 +98,10 @@ publishing {
     }
     repositories {
         maven {
-            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            url "https://repo.rdc.aliyun.com/repository/73792-snapshot-z4fvGZ/"
             credentials {
-                username sonatypeUsername
-                password sonatypePassword
+                username System.getenv("ALIYUN_MAVEN_USERNAME")
+                password System.getenv("ALIYUN_MAVEN_PASSWORD")
             }
         }
     }
