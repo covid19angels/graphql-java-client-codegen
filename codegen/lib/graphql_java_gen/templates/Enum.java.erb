@@ -31,10 +31,9 @@ import java.util.Map;
           <% type.enum_values(include_deprecated: include_deprecated).each do |value| %>
             <%= java_doc(value) %>
             <%= value.deprecated? ? "@Deprecated\n" : '' -%>
-            <%= value.upcase_name %>,
+            <%= value.upcase_name %><% if (value == type.enum_values(include_deprecated: include_deprecated).last) %>;<% else %>,<% end %>
           <% end %>
 
-          UNKNOWN_VALUE;
 
           public static <%= type.name %> fromGraphQl(String value) {
             if (value == null) {
@@ -48,7 +47,7 @@ import java.util.Map;
                 }
               <% end %>
                 default: {
-                  return UNKNOWN_VALUE;
+                  return null;
                 }
             }
           }
