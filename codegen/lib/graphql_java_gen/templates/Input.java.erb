@@ -31,6 +31,8 @@ public class <%= type.name %> implements Serializable {
       private Input<<%= java_input_type(field.type) %>> <%= escape_reserved_word(field.camelize_name) %> = Input.undefined();
     <% end %>
 
+    public <%= type.name %>() {}
+
     <% unless type.required_input_fields.empty? %>
       public <%= type.name %>(<%= type.required_input_fields.map{ |field| "#{java_input_type(field.type)} #{escape_reserved_word(field.camelize_name)}" }.join(', ') %>) {
           <% type.required_input_fields.each do |field| %>
